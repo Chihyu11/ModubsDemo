@@ -9,18 +9,18 @@ from pymodbus.payload import BinaryPayloadDecoder, Endian
 from datetime import datetime
 
 def readModbusAllTCP(count: int = 25, ip: str = "11.0.0.1"):
-    """liest alle Modbus register ab 0 und decodiert die Register,
+    """Liest alle Modbus Register ab 0 und decodiert die Register,
         die Daten werden unter Messwerte (list) gespeichert
 
     Args:
-        count (int): Gibt die anzahl adressen an welche ausgelsen werden sollen.
-            Der Standartwert ist 25
+        count (int): Gibt die Anzahl Adressen an welche ausgelesen werden sollen.
+            Der Standartwert ist 25.
         ip (str): Ip Adresse zu Modbus-Server. Der Standartwert ist 11.0.0.1
     Returns:
             None
 
     Notes:
-        Für jede Ip sollte ein seperater Pozess(schneller) oder Threed(ressourcensparend) gestartet werden
+        Für jede Ip sollte ein separater Prozess(schneller) oder Threed(ressourcensparend) gestartet werden
 
     Examples:
         >>> readModbusAllTCP()
@@ -49,7 +49,7 @@ def connectToModbusClient(ip: str) -> ModbusClient:
             ModbusClient (pymodbus)
 
     Notes:
-        Falls die Verbindung nicht hergestellt werden kann wird alle 10 sec einen neuer Versuch unternomen.
+        Falls die Verbindung nicht hergestellt werden kann wird alle 10 sec einen neuer Versuch unternommen.
         Zwischen 18:00 und 6:00 beträgt die Wartezeit 600 sec(10 min)
 
     Examples:
@@ -79,7 +79,7 @@ def decodeModbusValues(res):
     # Clear Ausgabe
     os.system('cls' if os.name == 'nt' else "printf '\033c'")
 
-    # Dekodiert Modbus und Daten erstellt ein sensor log
+    # Decodiert ModbusRegister 
     CoNr = decodeCoNr(res.registers)
     print("CoNr: " + CoNr)
 
@@ -108,7 +108,7 @@ def decodeFlot(decimalValue) -> float:
 
 
 def decodeInt(decimalValue) -> int:
-    # wandelt einen Decimal wert in int um, ignoriert werden Werrte über 1000kg und negativwerte
+    # wandelt einen Decimal Wert in int um, ignoriert werden Werrte über 1000kg und Negativwerte
     # return value int
     toReturn = decimalValue * 0.1
     if toReturn <= 1000 and toReturn >= 0:
@@ -149,7 +149,7 @@ def hexIeee754ToFloat(value) -> float:
 
 
 def _turnOverString(value: str) -> str:
-    # Dreht string um, werden von Modbus rückwerts ausgelsen
+    # Dreht string um, werden teils rückwerts ausgelsen
     return value[1] + value[0]
 
 
