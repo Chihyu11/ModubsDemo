@@ -8,14 +8,14 @@ from pymodbus.client.sync import ModbusTcpClient as ModbusClient
 from pymodbus.payload import BinaryPayloadDecoder, Endian
 from datetime import datetime
 
-def readModbusAllTCP(count: int = 25, ip: str = "11.0.0.1"):
+def readModbusAllTCP(count: int = 25, ip: str = "10.0.1.1"):
     """Liest alle Modbus Register ab 0 und decodiert die Register,
         die Daten werden unter Messwerte (list) gespeichert
 
     Args:
         count (int): Gibt die Anzahl Adressen an welche ausgelesen werden sollen.
             Der Standartwert ist 25.
-        ip (str): Ip Adresse zu Modbus-Server. Der Standartwert ist 11.0.0.1
+        ip (str): Ip Adresse zu Modbus-Server. Der Standartwert ist 10.0.1.1
     Returns:
             None
 
@@ -25,7 +25,7 @@ def readModbusAllTCP(count: int = 25, ip: str = "11.0.0.1"):
     Examples:
         >>> readModbusAllTCP()
         None
-        >>> readModbusAllTCP(0, "11.0.0.2")
+        >>> readModbusAllTCP(0, "10.0.1.1")
         None
     """
 
@@ -53,7 +53,7 @@ def connectToModbusClient(ip: str) -> ModbusClient:
         Zwischen 18:00 und 6:00 beträgt die Wartezeit 600 sec(10 min)
 
     Examples:
-        >>> connectToModbusClient("11.0.0.1")
+        >>> connectToModbusClient("10.0.1.1")
         None
     """
     run = True
